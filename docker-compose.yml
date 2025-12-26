@@ -1,0 +1,27 @@
+services:
+  redis:
+    build:
+      context: .
+      dockerfile: redis/Dockerfile.redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+    environment:
+      REDIS_PASSWORD: "9e2466bfc04ed35cbc7558183d9a9460ff14d29604daafdfdeb23377df3d2719"
+    volumes:
+      - redis_volume:/data
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'redis-cli -h 127.0.0.1 -p 6379 ${REDIS_PASSWORD:+-a "$REDIS_PASSWORD"} ping | grep -q PONG',
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+volumes:
+  redis_volume:
