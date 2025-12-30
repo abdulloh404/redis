@@ -8,6 +8,14 @@ services:
       - "6380:6379"
     environment:
       REDIS_PASSWORD: "9e2466bfc04ed35cbc7558183d9a9460ff14d29604daafdfdeb23377df3d2719"
+    command: >
+      sh -c '
+        if [ -n "$$REDIS_PASSWORD" ]; then
+          exec redis-server --requirepass "$$REDIS_PASSWORD";
+        else
+          exec redis-server;
+        fi
+      '
     volumes:
       - redis_volume:/data
     restart: unless-stopped
