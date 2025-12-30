@@ -6,7 +6,7 @@ services:
     container_name: redis
     ports:
       - "6379:6379"
-    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    # command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     environment:
       REDIS_PASSWORD: "9e2466bfc04ed35cbc7558183d9a9460ff14d29604daafdfdeb23377df3d2719"
     volumes:
