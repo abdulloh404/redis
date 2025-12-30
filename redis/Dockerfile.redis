@@ -1,4 +1,4 @@
-FROM redis:8.4.0-bookworm
+FROM redis:7.4-alpine
 
 RUN mkdir -p /var/log/redis /data \
     && chown -R redis:redis /var/log/redis /data
