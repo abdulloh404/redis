@@ -8,8 +8,8 @@ services:
       - "6379:6379"
     environment:
       REDIS_PASSWORD: "9e2466bfc04ed35cbc7558183d9a9460ff14d29604daafdfdeb23377df3d2719"
-    volumes:
-      - redis_volume:/data
+    # volumes:
+    #   - redis_volume:/data
     restart: unless-stopped
 
     healthcheck:
@@ -23,5 +23,5 @@ services:
       retries: 10
       start_period: 5s
 
-volumes:
-  redis_volume:
+# volumes:
+#   redis_volume:
